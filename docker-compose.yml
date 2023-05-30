@@ -18,33 +18,32 @@ services:
       POSTGRES_HOST: db 
     networks:
       - db_network
+    web:
+      build: .
+      command: bash -c "python manage.py migrate && python manage.py runserver 0:8000"
+      ports:
+        - 4000:8000
+      environment:
+        POSTGRES_HOST: db 
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: '123'
+        POSTGRES_DB: NetworkAIMVP
+        # POSTGRES_INITDB_ARGS: --auth=scram-sha-256
 
-   
-
-    
-    
-
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
-    ports:
-      - 4000:8000
-    environment:
-      POSTGRES_HOST: db 
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: '123'
-      POSTGRES_DB: NetworkAIMVP
-      # POSTGRES_INITDB_ARGS: --auth=scram-sha-256
-      
+      networks:
+        - db_network
+      depends_on:
+        - db
     networks:
-      - db_network
-    depends_on:
-      - db
+      db_network:
+    volumes:
+      db-data:
+
+
+    
+    
+
+
      
    
-networks:
-  db_network:
-volumes:
-  db-data:
+
