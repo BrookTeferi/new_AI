@@ -16,18 +16,26 @@ services:
       POSTGRES_HOST: db 
     networks:
       - db_network
+
+   
+
+    
+    
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
-      - 9000:8000
+      - 4000:8000
     environment:
       POSTGRES_HOST: db 
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: '123'
       POSTGRES_DB: NetworkAIMVP
+      # POSTGRES_INITDB_ARGS: --auth=scram-sha-256
+      
     networks:
       - db_network
     depends_on:
@@ -38,3 +46,12 @@ networks:
   db_network:
 volumes:
   db-data:
+
+
+    
+    
+
+
+     
+   
+
