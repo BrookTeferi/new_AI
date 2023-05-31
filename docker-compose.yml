@@ -1,5 +1,5 @@
-version: "3.9"
 
+version: "3.9"
 services:
   db:
     image: postgres
@@ -10,20 +10,12 @@ services:
     ports:
       - "5433:5432"
     environment:
-    
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: '123'
       POSTGRES_DB: NetworkAIMVP
-      # POSTGRES_INITDB_ARGS: --auth=scram-sha-256
       POSTGRES_HOST: db 
     networks:
       - db_network
-
-   
-
-    
-    
-
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -36,8 +28,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: '123'
       POSTGRES_DB: NetworkAIMVP
-      # POSTGRES_INITDB_ARGS: --auth=scram-sha-256
-      
     networks:
       - db_network
     depends_on:
