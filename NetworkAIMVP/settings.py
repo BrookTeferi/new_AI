@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-
-from transformers import pipeline
+from happytransformer import HappyGeneration
+#from transformers import pipeline
 
 
 
@@ -21,7 +21,8 @@ from transformers import pipeline
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-HAPPY_GEN = pipeline('text-generation', model='EleutherAI/gpt-neo-1.3B')
+HAPPY_GEN=HappyGeneration("GPT-NEO","EleutherAI/gpt-neo-1.3B")
+#HAPPY_GEN = pipeline('text-generation', model='EleutherAI/gpt-neo-1.3B')
 
 
 # Quick-start development settings - unsuitable for production
